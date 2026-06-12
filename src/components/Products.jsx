@@ -48,9 +48,12 @@ const categories = [
     titleHi: 'स्प्रिंकलर',
     desc: 'Pop-up & impact sprinklers, risers, connectors for wide-area coverage',
     brands: ['Kalyan Poly', 'Finolex', 'Kothari'],
-    img: '/assets/images/kp-product-2.png',
+    img: '/assets/images/sprinkler-field.jpg',
     color: 'from-cyan-700 to-cyan-900',
-    gallery: [],
+    gallery: [
+      '/assets/images/sprinkler-field.jpg',
+      '/assets/images/kp-product-2.png',
+    ],
   },
   {
     title: 'Mulching Film',
@@ -65,10 +68,13 @@ const categories = [
     title: 'Automation & Filters',
     titleHi: 'ऑटोमेशन',
     desc: 'Venturi injectors, screen filters, timer valves & fertigation systems',
-    brands: ['Netafim', 'Rivulis'],
-    img: '/assets/images/radhakrishna.png',
+    brands: ['Kothari', 'Netafim', 'Rivulis'],
+    img: '/assets/images/kothari-filter-system.jpg',
     color: 'from-purple-700 to-purple-900',
-    gallery: [],
+    gallery: [
+      '/assets/images/kothari-filter-system.jpg',
+      '/assets/images/radhakrishna.png',
+    ],
   },
 ]
 
