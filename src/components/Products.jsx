@@ -33,9 +33,15 @@ const categories = [
     titleHi: 'पीव्हीसी पाईप',
     desc: 'Rigid PVC pipes, elbows, tees, reducers, valves & accessories',
     brands: ['Finolex', 'Supreme', 'Astral'],
-    img: '/assets/images/kp-product-1.png',
+    img: '/assets/images/pvc-pipes-stack.jpg',
     color: 'from-gray-600 to-gray-800',
-    gallery: [],
+    gallery: [
+      '/assets/images/pvc-pipes-stack.jpg',
+      '/assets/images/truck-pvc-pipes.jpg',
+      '/assets/images/supreme-logo.png',
+      '/assets/images/kp-product-1.png',
+      '/assets/images/kp-product-2.png',
+    ],
   },
   {
     title: 'Sprinkler Systems',
