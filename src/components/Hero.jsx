@@ -54,7 +54,8 @@ export default function Hero() {
   }, [])
 
   return (
-    <section id="home" className="relative min-h-screen flex flex-col justify-center overflow-hidden">
+    <>
+    <section id="home" className="relative min-h-[88vh] flex flex-col justify-center overflow-hidden">
       {/* Rotating background farm images */}
       {bgImages.map((src, i) => (
         <div
@@ -63,16 +64,12 @@ export default function Hero() {
           style={{ backgroundImage: `url('${src}')`, opacity: i === bgIndex ? 1 : 0 }}
         />
       ))}
-      {/* Dark green overlay */}
-      <div className="absolute inset-0 bg-gradient-to-br from-kgreen/90 via-kgreen/80 to-black/70" />
+      {/* Gradient only behind the text — image stays clear on the right */}
+      <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/45 to-transparent" />
 
-      {/* Decorative blobs */}
-      <div className="absolute top-20 right-10 w-80 h-80 rounded-full bg-gold/10 blur-3xl blob-1 pointer-events-none" />
-      <div className="absolute bottom-20 left-10 w-64 h-64 rounded-full bg-kgreen-mid/40 blur-3xl blob-2 pointer-events-none" />
-
-      <div className="relative z-10 max-w-7xl mx-auto px-4 pt-28 pb-16 flex flex-col lg:flex-row items-center gap-10">
-        {/* Text */}
-        <div className="flex-1 text-center lg:text-left">
+      <div className="relative z-10 max-w-7xl mx-auto px-4 pt-28 pb-20 w-full">
+        {/* Text — left side only */}
+        <div className="max-w-xl text-left">
           <div className="inline-block bg-gold/20 border border-gold/40 text-gold text-xs font-bold px-3 py-1 rounded-full mb-4 tracking-widest uppercase animate-fadeUp">
             Phulambri • Since 2003
           </div>
@@ -93,23 +90,6 @@ export default function Hero() {
             </a>
           </div>
         </div>
-
-        {/* Stats cards */}
-        <div className="grid grid-cols-2 gap-3 animate-fadeUp" style={{ animationDelay:'.5s' }}>
-          {stats.map((s, i) => (
-            <div key={i} className="bg-white/10 backdrop-blur border border-white/20 rounded-2xl p-5 text-center min-w-[120px]">
-              <div
-                className="text-gold font-black text-3xl"
-                data-val={s.value}
-                data-suffix={s.suffix}
-                ref={el => counterRefs.current[i] = el}
-              >
-                0{s.suffix}
-              </div>
-              <div className="text-gray-300 text-xs mt-1 font-medium">{s.label}</div>
-            </div>
-          ))}
-        </div>
       </div>
 
       {/* Scroll chevron */}
@@ -119,5 +99,25 @@ export default function Hero() {
         </svg>
       </a>
     </section>
+
+    {/* Stats band — below the hero on clean white */}
+    <section className="bg-white border-b border-gray-100">
+      <div className="max-w-7xl mx-auto px-4 py-8 grid grid-cols-2 md:grid-cols-4 gap-4">
+        {stats.map((s, i) => (
+          <div key={i} className="text-center">
+            <div
+              className="text-kgreen font-black text-3xl lg:text-4xl"
+              data-val={s.value}
+              data-suffix={s.suffix}
+              ref={el => counterRefs.current[i] = el}
+            >
+              0{s.suffix}
+            </div>
+            <div className="text-gray-500 text-xs lg:text-sm mt-1 font-semibold uppercase tracking-wide">{s.label}</div>
+          </div>
+        ))}
+      </div>
+    </section>
+    </>
   )
 }
