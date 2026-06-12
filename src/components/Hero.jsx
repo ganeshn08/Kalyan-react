@@ -1,18 +1,18 @@
 import { useEffect, useRef, useState } from 'react'
 
 const bgImages = [
-  // Drip irrigation lines in green field
+  // Center-pivot sprinklers spraying over lush green corn field
+  'https://images.unsplash.com/photo-1692369584496-3216a88f94c1?w=1920&q=85',
+  // Sprinklers spraying over green crop rows
+  'https://images.unsplash.com/photo-1645727527942-f12e14a0c841?w=1920&q=85',
+  // Micro-sprinklers watering young crops
+  'https://images.unsplash.com/photo-1738598665698-7fd7af4b5e0c?w=1920&q=85',
+  // Young green corn rows close-up
   'https://images.unsplash.com/photo-1625246333195-78d9c38ad449?w=1920&q=85',
-  // Sprinkler watering green lawn/field
-  'https://images.unsplash.com/photo-1416879595882-3373a0480b5b?w=1920&q=85',
-  // Lush green crop rows
-  'https://images.unsplash.com/photo-1464226184884-fa280b87c399?w=1920&q=85',
-  // Aerial green farmland
+  // Aerial green farmland rows
   'https://images.unsplash.com/photo-1560493676-04071c5f467b?w=1920&q=85',
-  // Young green plants in field rows
-  'https://images.unsplash.com/photo-1592982537447-7440770cbfc9?w=1920&q=85',
-  // Green rice paddy with water
-  'https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=1920&q=85',
+  // Rain gun irrigating field at golden hour
+  'https://images.unsplash.com/photo-1743742566156-f1745850281a?w=1920&q=85',
 ]
 
 const stats = [
