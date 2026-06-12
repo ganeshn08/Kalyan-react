@@ -1,11 +1,26 @@
+import { useState, useEffect } from 'react'
+
 const categories = [
   {
     title: 'Drip Irrigation',
     titleHi: 'ठिबक सिंचन',
     desc: 'Inline & Flat drip tapes, emitters, laterals for precision farming',
     brands: ['Finolex', 'Jain', 'Kothari', 'KP'],
-    img: '/assets/images/kp-drip-photo.jpg',
+    img: '/assets/images/finolex-drip-1.jpg',
     color: 'from-green-700 to-green-900',
+    gallery: [
+      '/assets/images/finolex-drip-1.jpg',
+      '/assets/images/kp-drip-reel-front.jpg',
+      '/assets/images/kp-drip-reel-side.jpg',
+      '/assets/images/kp-drip-stock.jpg',
+      '/assets/images/finolex-drip-2.jpg',
+      '/assets/images/kp-drip-photo.jpg',
+      '/assets/images/kalyan-poly-drip-reel.png',
+      '/assets/images/icon-drip.jpg',
+      '/assets/images/finolex-ad.jpg',
+      '/assets/images/kp-drip-poster.png',
+      '/assets/images/kp-drip-poster-rk.png',
+    ],
   },
   {
     title: 'HDPE Lapeta Pipes',
@@ -14,6 +29,7 @@ const categories = [
     brands: ['Tiger', 'Vijay Kisan', 'KP Kalyan'],
     img: '/assets/images/lapeta-side.jpg',
     color: 'from-blue-700 to-blue-900',
+    gallery: [],
   },
   {
     title: 'PVC Pipes & Fittings',
@@ -22,6 +38,7 @@ const categories = [
     brands: ['Finolex', 'Supreme', 'Astral'],
     img: '/assets/images/kp-product-1.png',
     color: 'from-gray-600 to-gray-800',
+    gallery: [],
   },
   {
     title: 'Sprinkler Systems',
@@ -30,6 +47,7 @@ const categories = [
     brands: ['Jain', 'Finolex', 'NaanDanJain'],
     img: '/assets/images/kp-product-2.png',
     color: 'from-cyan-700 to-cyan-900',
+    gallery: [],
   },
   {
     title: 'Mulching Film',
@@ -38,6 +56,7 @@ const categories = [
     brands: ['Icon', 'KP'],
     img: '/assets/images/icon-mulch.jpg',
     color: 'from-yellow-700 to-yellow-900',
+    gallery: [],
   },
   {
     title: 'Automation & Filters',
@@ -46,10 +65,123 @@ const categories = [
     brands: ['Netafim', 'Rivulis', 'Jain'],
     img: '/assets/images/radhakrishna.png',
     color: 'from-purple-700 to-purple-900',
+    gallery: [],
   },
 ]
 
+function GalleryModal({ category, onClose }) {
+  const [active, setActive] = useState(0)
+  const photos = category.gallery.length ? category.gallery : [category.img]
+
+  useEffect(() => {
+    const onKey = e => {
+      if (e.key === 'Escape') onClose()
+      if (e.key === 'ArrowRight') setActive(a => (a + 1) % photos.length)
+      if (e.key === 'ArrowLeft') setActive(a => (a - 1 + photos.length) % photos.length)
+    }
+    window.addEventListener('keydown', onKey)
+    document.body.style.overflow = 'hidden'
+    return () => {
+      window.removeEventListener('keydown', onKey)
+      document.body.style.overflow = ''
+    }
+  }, [photos.length, onClose])
+
+  return (
+    <div className="fixed inset-0 z-[100] flex items-center justify-center p-4" onClick={onClose}>
+      {/* Backdrop */}
+      <div className="absolute inset-0 bg-black/80 backdrop-blur-sm" />
+
+      {/* Panel */}
+      <div
+        className="relative bg-white rounded-3xl max-w-3xl w-full max-h-[90vh] overflow-y-auto shadow-2xl animate-slideIn"
+        onClick={e => e.stopPropagation()}
+      >
+        {/* Close button */}
+        <button
+          onClick={onClose}
+          aria-label="Close"
+          className="absolute top-4 right-4 z-10 bg-black/60 hover:bg-black text-white rounded-full w-9 h-9 flex items-center justify-center text-lg font-bold transition-colors"
+        >
+          ✕
+        </button>
+
+        {/* Main image */}
+        <div className="relative bg-gray-100">
+          <img
+            src={photos[active]}
+            alt={category.title}
+            className="w-full max-h-[55vh] object-contain"
+          />
+          {photos.length > 1 && (
+            <>
+              <button
+                onClick={() => setActive(a => (a - 1 + photos.length) % photos.length)}
+                aria-label="Previous photo"
+                className="absolute left-3 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black text-white rounded-full w-9 h-9 flex items-center justify-center transition-colors"
+              >
+                ‹
+              </button>
+              <button
+                onClick={() => setActive(a => (a + 1) % photos.length)}
+                aria-label="Next photo"
+                className="absolute right-3 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black text-white rounded-full w-9 h-9 flex items-center justify-center transition-colors"
+              >
+                ›
+              </button>
+            </>
+          )}
+        </div>
+
+        {/* Thumbnails */}
+        {photos.length > 1 && (
+          <div className="flex gap-2 px-5 pt-4 overflow-x-auto">
+            {photos.map((p, i) => (
+              <button
+                key={i}
+                onClick={() => setActive(i)}
+                className={`shrink-0 w-16 h-16 rounded-lg overflow-hidden border-2 transition-colors ${i === active ? 'border-kgreen' : 'border-transparent opacity-60 hover:opacity-100'}`}
+              >
+                <img src={p} alt="" className="w-full h-full object-cover" />
+              </button>
+            ))}
+          </div>
+        )}
+
+        {/* Info */}
+        <div className="p-6">
+          <div className="flex items-center gap-3 mb-1">
+            <h3 className="font-black text-kgreen text-2xl">{category.title}</h3>
+            <span className="font-deva text-gray-500 text-sm">{category.titleHi}</span>
+          </div>
+          <p className="text-gray-600 text-sm mb-4">{category.desc}</p>
+          <div className="flex flex-wrap gap-1.5 mb-6">
+            {category.brands.map(b => (
+              <span key={b} className="bg-kgreen/10 text-kgreen text-xs font-semibold px-2.5 py-1 rounded-full">{b}</span>
+            ))}
+          </div>
+          <div className="flex flex-wrap gap-3">
+            <a
+              href={`https://wa.me/919764298488?text=${encodeURIComponent(`Hello, I want to know prices for ${category.title}.`)}`}
+              target="_blank"
+              rel="noreferrer"
+              className="bg-green-500 hover:bg-green-600 text-white font-bold px-5 py-2.5 rounded-full text-sm transition-colors"
+            >
+              Ask Price on WhatsApp
+            </a>
+            <a href="tel:9764298488" className="border-2 border-kgreen text-kgreen hover:bg-kgreen hover:text-white font-bold px-5 py-2.5 rounded-full text-sm transition-colors">
+              Call Now
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  )
+}
+
 export default function Products() {
+  const [selected, setSelected] = useState(null)
+
   return (
     <section id="products" className="py-20 bg-kgreen-pale">
       <div className="max-w-7xl mx-auto px-4">
@@ -57,15 +189,16 @@ export default function Products() {
         <div className="text-center mb-12 reveal">
           <span className="inline-block bg-kgreen/10 text-kgreen text-xs font-bold px-3 py-1 rounded-full mb-3 uppercase tracking-widest">What We Offer</span>
           <h2 className="text-3xl lg:text-4xl font-black text-kgreen font-deva mb-2">आमची उत्पादने</h2>
-          <p className="text-gray-600 text-lg">Our Products & Services</p>
+          <p className="text-gray-600 text-lg">Our Products & Services — click a card to see photos</p>
         </div>
 
         {/* Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {categories.map((cat, i) => (
-            <div
+            <button
               key={i}
-              className="card-lift bg-white rounded-2xl overflow-hidden shadow-sm border border-gray-100 reveal"
+              onClick={() => setSelected(cat)}
+              className="card-lift bg-white rounded-2xl overflow-hidden shadow-sm border border-gray-100 reveal text-left cursor-pointer"
               style={{ animationDelay: `${i * 0.08}s` }}
             >
               {/* Image */}
@@ -74,16 +207,12 @@ export default function Products() {
                   src={cat.img}
                   alt={cat.title}
                   className="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
-                  onError={e => {
-                    e.target.style.display = 'none'
-                    e.target.nextSibling.style.display = 'flex'
-                  }}
                 />
-                <div className={`hidden absolute inset-0 bg-gradient-to-br ${cat.color} items-center justify-center`}>
-                  <span className="text-white/30 text-5xl font-black">{cat.title[0]}</span>
-                </div>
                 <div className="absolute bottom-2 left-2">
                   <span className="bg-black/50 text-white text-xs px-2 py-0.5 rounded font-deva">{cat.titleHi}</span>
+                </div>
+                <div className="absolute top-2 right-2 bg-white/90 text-kgreen text-xs font-bold px-2 py-1 rounded-full shadow">
+                  📷 View
                 </div>
               </div>
 
@@ -97,7 +226,7 @@ export default function Products() {
                   ))}
                 </div>
               </div>
-            </div>
+            </button>
           ))}
         </div>
 
@@ -109,6 +238,8 @@ export default function Products() {
           </a>
         </div>
       </div>
+
+      {selected && <GalleryModal category={selected} onClose={() => setSelected(null)} />}
     </section>
   )
 }

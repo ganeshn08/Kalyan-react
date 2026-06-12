@@ -1,7 +1,7 @@
 const brands = [
   { name: 'Finolex Drip', img: '/assets/images/finolex-drip-1.jpg' },
   { name: 'Jain Irrigation', img: '/assets/images/kp-drip-poster.png' },
-  { name: 'Kothari Group', img: '/assets/images/kothari-rates.jpg' },
+  { name: 'Kothari Group', img: null },
   { name: 'KP Kalyan Polymers', img: '/assets/images/kp-logo.jpg' },
   { name: 'Tiger Lapeta', img: '/assets/images/tiger-lapeta.jpg' },
   { name: 'Vijay Kisan', img: '/assets/images/vijay-kisan-lapeta.jpg' },
@@ -25,12 +25,14 @@ export default function Brands() {
         <div className="marquee-track items-center py-2">
           {all.map((b, i) => (
             <div key={i} className="flex items-center gap-3 bg-kgreen-pale border border-kgreen/10 rounded-xl px-4 py-3 min-w-max mx-2 shadow-sm">
-              <img
-                src={b.img}
-                alt={b.name}
-                className="w-10 h-10 rounded-lg object-cover"
-                onError={e => e.target.style.display = 'none'}
-              />
+              {b.img && (
+                <img
+                  src={b.img}
+                  alt={b.name}
+                  className="w-10 h-10 rounded-lg object-cover"
+                  onError={e => e.target.style.display = 'none'}
+                />
+              )}
               <span className="text-kgreen font-bold text-sm whitespace-nowrap">{b.name}</span>
             </div>
           ))}
