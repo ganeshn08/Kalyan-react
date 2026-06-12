@@ -5,6 +5,7 @@ import Hero from './components/Hero'
 import TrustStrip from './components/TrustStrip'
 import Products from './components/Products'
 import Brands from './components/Brands'
+import Photos from './components/Photos'
 import WhyUs from './components/WhyUs'
 import QuoteForm from './components/QuoteForm'
 import Contact from './components/Contact'
@@ -35,6 +36,7 @@ export default function App() {
       <main>
         <Hero />
         <TrustStrip />
+        <Photos />
         <Products />
         <Brands />
         <WhyUs />
