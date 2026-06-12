@@ -1,4 +1,19 @@
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
+
+const bgImages = [
+  // Drip irrigation lines in green field
+  'https://images.unsplash.com/photo-1625246333195-78d9c38ad449?w=1920&q=85',
+  // Sprinkler watering green lawn/field
+  'https://images.unsplash.com/photo-1416879595882-3373a0480b5b?w=1920&q=85',
+  // Lush green crop rows
+  'https://images.unsplash.com/photo-1464226184884-fa280b87c399?w=1920&q=85',
+  // Aerial green farmland
+  'https://images.unsplash.com/photo-1560493676-04071c5f467b?w=1920&q=85',
+  // Young green plants in field rows
+  'https://images.unsplash.com/photo-1592982537447-7440770cbfc9?w=1920&q=85',
+  // Green rice paddy with water
+  'https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=1920&q=85',
+]
 
 const stats = [
   { value: 20, suffix: '+', label: 'Years of Trust' },
@@ -9,6 +24,13 @@ const stats = [
 
 export default function Hero() {
   const counterRefs = useRef([])
+  const [bgIndex, setBgIndex] = useState(0)
+
+  useEffect(() => {
+    bgImages.forEach(src => { const img = new Image(); img.src = src })
+    const timer = setInterval(() => setBgIndex(i => (i + 1) % bgImages.length), 7000)
+    return () => clearInterval(timer)
+  }, [])
 
   useEffect(() => {
     const observer = new IntersectionObserver(entries => {
@@ -33,11 +55,14 @@ export default function Hero() {
 
   return (
     <section id="home" className="relative min-h-screen flex flex-col justify-center overflow-hidden">
-      {/* Background farm image */}
-      <div
-        className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-        style={{ backgroundImage: "url('https://images.unsplash.com/photo-1625246333195-78d9c38ad449?w=1920&q=80')" }}
-      />
+      {/* Rotating background farm images */}
+      {bgImages.map((src, i) => (
+        <div
+          key={src}
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat transition-opacity duration-[2000ms]"
+          style={{ backgroundImage: `url('${src}')`, opacity: i === bgIndex ? 1 : 0 }}
+        />
+      ))}
       {/* Dark green overlay */}
       <div className="absolute inset-0 bg-gradient-to-br from-kgreen/90 via-kgreen/80 to-black/70" />
 

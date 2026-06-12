@@ -1,11 +1,10 @@
 const brands = [
-  { name: 'Finolex Drip', img: '/assets/images/finolex-drip-1.jpg' },
-  { name: 'Jain Irrigation', img: '/assets/images/kp-drip-poster.png' },
-  { name: 'Kothari Group', img: null },
   { name: 'KP Kalyan Polymers', img: '/assets/images/kp-logo.jpg' },
+  { name: 'Finolex Drip', img: '/assets/images/finolex-drip-1.jpg' },
+  { name: 'Icon Irrigation', img: '/assets/images/icon-drip.jpg' },
+  { name: 'Kothari Group', img: null },
   { name: 'Tiger Lapeta', img: '/assets/images/tiger-lapeta.jpg' },
   { name: 'Vijay Kisan', img: '/assets/images/vijay-kisan-lapeta.jpg' },
-  { name: 'Icon Irrigation', img: '/assets/images/icon-drip.jpg' },
   { name: 'Radhakrishna', img: '/assets/images/radhakrishna.png' },
 ]
 
