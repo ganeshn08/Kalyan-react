@@ -29,6 +29,18 @@ const categories = [
     gallery: [],
   },
   {
+    title: 'Submain Pipes',
+    titleHi: 'सबमेन पाईप',
+    desc: 'HDPE submain distribution lines with mini-sprinkler & emitter outlets',
+    brands: ['Kalyan Poly', 'Finolex', 'Kothari'],
+    img: '/assets/images/submain-1.jpg',
+    color: 'from-slate-700 to-slate-900',
+    gallery: [
+      '/assets/images/submain-1.jpg',
+      '/assets/images/submain-2.jpg',
+    ],
+  },
+  {
     title: 'PVC Pipes & Fittings',
     titleHi: 'पीव्हीसी पाईप',
     desc: 'Rigid PVC pipes, elbows, tees, reducers, valves & accessories',
