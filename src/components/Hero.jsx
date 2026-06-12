@@ -51,12 +51,9 @@ export default function Hero() {
           <div className="inline-block bg-gold/20 border border-gold/40 text-gold text-xs font-bold px-3 py-1 rounded-full mb-4 tracking-widest uppercase animate-fadeUp">
             Phulambri • Since 2003
           </div>
-          <h1 className="font-deva font-black text-white leading-tight mb-3 animate-fadeUp" style={{ fontSize: 'clamp(2rem,5vw,3.5rem)', animationDelay:'.1s' }}>
-            कल्याण पाईप डेपो
-          </h1>
-          <p className="text-gold font-bold text-xl lg:text-2xl mb-2 animate-fadeUp" style={{ animationDelay:'.2s' }}>
+          <h1 className="font-black text-white leading-tight mb-3 animate-fadeUp" style={{ fontSize: 'clamp(2rem,5vw,3.5rem)', animationDelay:'.1s' }}>
             Kalyan Pipe Depot
-          </p>
+          </h1>
           <p className="text-gray-200 text-base lg:text-lg max-w-xl mb-8 animate-fadeUp" style={{ animationDelay:'.3s' }}>
             Wholesale supplier of drip irrigation, HDPE pipes, PVC fittings & irrigation automation. Trusted by farmers across Phulambri taluka.
           </p>
