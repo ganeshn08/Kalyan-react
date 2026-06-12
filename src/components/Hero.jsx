@@ -17,7 +17,7 @@ const bgImages = [
 
 const stats = [
   { value: 20, suffix: '+', label: 'Years of Trust' },
-  { value: 500, suffix: '+', label: 'Farmers Served' },
+  { value: 25000, suffix: '+', label: 'Farmers Served' },
   { value: 15, suffix: '+', label: 'Top Brands' },
   { value: 100, suffix: '%', label: 'Genuine Products' },
 ]
