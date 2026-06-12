@@ -1,7 +1,7 @@
 const contacts = [
   { label: 'Ganesh Nage', role: 'Proprietor', phone: '9764298488', wa: true },
   { label: 'Karbhari Nage', role: 'Founder', phone: '9890378253', wa: false },
-  { label: 'Office', role: 'General Enquiry', phone: '8421548488', wa: true },
+  { label: 'Office', role: 'General Enquiry', phone: '9307788688', wa: true },
 ]
 
 export default function Contact() {
