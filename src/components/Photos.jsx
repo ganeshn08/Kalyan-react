@@ -6,9 +6,9 @@ const photos = [
   { src: '/assets/images/truck-drip-lapeta.jpg', caption: 'Tata Tomato Taar' },
   { src: '/assets/images/shop-interior-pumps.jpg', caption: 'Pump display at the store' },
   { src: '/assets/images/truck-pvc-pipes.jpg', caption: 'Bulk PVC pipe consignment' },
-  { src: '/assets/images/shop-stock-coils.jpg', caption: 'Drip coil stock in store' },
+  { src: '/assets/images/shop-stock-coils.jpg', caption: 'Krushi mulching stock' },
   { src: '/assets/images/truck-loaded-goods.jpg', caption: 'LDPE pipe stock' },
-  { src: '/assets/images/shop-interior-pumps-2.jpg', caption: 'Krushi mulching stock' },
+  { src: '/assets/images/shop-interior-pumps-2.jpg', caption: 'Pumps & accessories range' },
 ]
 
 export default function Photos() {
