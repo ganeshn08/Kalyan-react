@@ -1,25 +1,40 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 
 const photos = [
   { src: '/assets/images/pvc-pipes-stack.jpg', caption: 'PVC pipe stock ready for dispatch' },
-  { src: '/assets/images/shop-interior-drip.jpg', caption: 'Inside our store — drip fittings & coils' },
-  { src: '/assets/images/truck-drip-lapeta.jpg', caption: 'Lapeta coils loaded for delivery' },
+  { src: '/assets/images/shop-interior-drip.jpg', caption: 'Mulching coils' },
+  { src: '/assets/images/truck-drip-lapeta.jpg', caption: 'Tata Tomato Taar' },
   { src: '/assets/images/shop-interior-pumps.jpg', caption: 'Pump display at the store' },
   { src: '/assets/images/truck-pvc-pipes.jpg', caption: 'Bulk PVC pipe consignment' },
   { src: '/assets/images/shop-stock-coils.jpg', caption: 'Drip coil stock in store' },
-  { src: '/assets/images/truck-loaded-goods.jpg', caption: 'Wholesale order dispatched' },
-  { src: '/assets/images/shop-interior-pumps-2.jpg', caption: 'Pumps & accessories range' },
+  { src: '/assets/images/truck-loaded-goods.jpg', caption: 'LDPE pipe stock' },
+  { src: '/assets/images/shop-interior-pumps-2.jpg', caption: 'Krushi mulching stock' },
 ]
 
 export default function Photos() {
   const [active, setActive] = useState(null)
+  const touchStartX = useRef(null)
+
+  const next = () => setActive(a => (a + 1) % photos.length)
+  const prev = () => setActive(a => (a - 1 + photos.length) % photos.length)
+
+  const onTouchStart = e => { touchStartX.current = e.touches[0].clientX }
+  const onTouchEnd = e => {
+    if (touchStartX.current === null) return
+    const dx = e.changedTouches[0].clientX - touchStartX.current
+    if (Math.abs(dx) > 45) {
+      if (dx > 0) next()   // swipe right → next
+      else prev()          // swipe left → previous
+    }
+    touchStartX.current = null
+  }
 
   useEffect(() => {
     if (active === null) return
     const onKey = e => {
       if (e.key === 'Escape') setActive(null)
-      if (e.key === 'ArrowRight') setActive(a => (a + 1) % photos.length)
-      if (e.key === 'ArrowLeft') setActive(a => (a - 1 + photos.length) % photos.length)
+      if (e.key === 'ArrowRight') next()
+      if (e.key === 'ArrowLeft') prev()
     }
     window.addEventListener('keydown', onKey)
     document.body.style.overflow = 'hidden'
@@ -67,7 +82,12 @@ export default function Photos() {
 
       {/* Lightbox */}
       {active !== null && (
-        <div className="fixed inset-0 z-[100] flex items-center justify-center p-4" onClick={() => setActive(null)}>
+        <div
+          className="fixed inset-0 z-[100] flex items-center justify-center p-4"
+          onClick={() => setActive(null)}
+          onTouchStart={onTouchStart}
+          onTouchEnd={onTouchEnd}
+        >
           <div className="absolute inset-0 bg-black/90 backdrop-blur-sm" />
 
           <button
@@ -79,14 +99,14 @@ export default function Photos() {
           </button>
 
           <button
-            onClick={e => { e.stopPropagation(); setActive(a => (a - 1 + photos.length) % photos.length) }}
+            onClick={e => { e.stopPropagation(); prev() }}
             aria-label="Previous"
             className="absolute left-4 top-1/2 -translate-y-1/2 z-10 bg-white/15 hover:bg-white/30 text-white rounded-full w-11 h-11 flex items-center justify-center text-2xl transition-colors"
           >
             ‹
           </button>
           <button
-            onClick={e => { e.stopPropagation(); setActive(a => (a + 1) % photos.length) }}
+            onClick={e => { e.stopPropagation(); next() }}
             aria-label="Next"
             className="absolute right-4 top-1/2 -translate-y-1/2 z-10 bg-white/15 hover:bg-white/30 text-white rounded-full w-11 h-11 flex items-center justify-center text-2xl transition-colors"
           >
@@ -98,6 +118,7 @@ export default function Photos() {
             <figcaption className="text-white/90 text-sm mt-4 font-medium text-center">
               {photos[active].caption}
               <span className="text-white/50 ml-2">({active + 1}/{photos.length})</span>
+              <span className="block sm:hidden text-white/40 text-xs mt-1">← swipe to browse →</span>
             </figcaption>
           </figure>
         </div>
