@@ -13,7 +13,6 @@ const categories = [
       '/assets/images/kp-drip-reel-side.jpg',
       '/assets/images/kp-drip-stock.jpg',
       '/assets/images/kp-drip-photo.jpg',
-      '/assets/images/kp-drip-poster-rk.png',
       '/assets/images/finolex-drip-1.jpg',
       '/assets/images/finolex-drip-2.jpg',
       '/assets/images/finolex-ad.jpg',
